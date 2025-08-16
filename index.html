@@ -1,25 +1,344 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Arslan's Portfolio</title>
+    <meta charset="UTF-8" />
+    <title>Muhammad Arslan - Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    <header>
-        <h1>Muhammad Arslan</h1>
-        <p>Welcome to my portfolio site!</p>
-    </header>
-    <section>
-        <h2>Projects</h2>
-        <ul>
-            <li><a href="https://github.com/yourusername/project1">Project 1</a></li>
-            <li><a href="https://github.com/yourusername/project2">Project 2</a></li>
-            <!-- Add more projects as needed -->
-        </ul>
-    </section>
-    <footer>
-        <p>Contact: <a href="mailto:ma0305422@gmail.com">ma0305422@gmail.com</a></p>
-    </footer>
+    <div id="root"></div>
+
+    <!-- Scripts -->
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script src="bootstrap.bundle.min.js"></script>
+
+    <script type="text/babel">
+        const Section = ({ id, title, children }) => (
+            <section id={id} className="section container">
+                <h2>{title}</h2>
+                {children}
+            </section>
+        );
+
+        const Card = ({ title, description }) => (
+            <div className="card card-custom">
+                <div className="card-body">
+                    {title && <h5 className="card-title">{title}</h5>}
+                    <p className="card-text">{description}</p>
+                </div>
+            </div>
+        );
+
+        const App = () => {
+            return (
+                <>
+                    <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+                        <div className="container">
+                            <a className="navbar-brand" href="#">Muhammad Arslan</a>
+                            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                                <span className="navbar-toggler-icon"></span>
+                            </button>
+                            <div className="collapse navbar-collapse" id="navbarNav">
+                                <ul className="navbar-nav ms-auto">
+                                    {["profile", "skills", "experience", "projects", "certificates", "education", "contact"].map(section => (
+                                        <li className="nav-item" key={section}>
+                                            <a className="nav-link" href={`#${section}`}>{section.charAt(0).toUpperCase() + section.slice(1)}</a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+
+                    <div className="hero">
+                        <div className="container">
+                            <h1>Muhammad Arslan</h1>
+                            <p className="lead">Full Stack Developer | PHP, Laravel, React, MySQL</p>
+                        </div>
+                    </div>
+
+                    <Section id="profile" title="Profile">
+                        <Card description={
+                            <>
+                                <p>
+                                    As a dedicated Full Stack Developer, I specialize in crafting scalable, high-performance web applications that are both maintainable and user-friendly.
+                                    With strong expertise in Laravel, PHP, and MySQL on the backend, I seamlessly integrate modern frontend technologies like React.js and Bootstrap to deliver dynamic, responsive experiences.
+                                </p>
+                                <p>
+                                    My skill set extends to RESTful API design, secure payment gateway integration, and building intuitive interfaces that prioritize usability.
+                                    I am passionate about writing clean, modular code and following best practices, continuously evolving my craft to keep pace with the latest industry trends and technologies.
+                                </p>
+                            </>
+                        } />
+                    </Section>
+
+                    <Section id="skills" title="Skills">
+                        <div className="row">
+                            {[
+                                {
+                                    title: "Frontend", description: [
+                                        "HTML5, CSS3, Sass",
+                                        "JavaScript, jQuery",
+                                        "Bootstrap, Tailwind CSS",
+                                        "React.js",
+                                        "Blade Templating Engine",
+                                        "Vue.js, (learning)",
+                                        "Next.js (learning)"
+                                    ]
+                                },
+                                {
+                                    title: "Backend", description: [
+                                        "PHP",
+                                        "Laravel Framework",
+                                        " Database Management (MySQL)",
+                                        "API Development",
+                                        "API Integration",
+                                        "Authentication, Authorization",
+                                        "CRUD operations"
+                                    ]
+                                },
+                                {
+                                    title: "Tools & Others", description: [
+                                        "Version Control (Git)",
+                                        "Jira",
+                                        "Trello",
+                                        "Basic WordPress coding",
+                                        "WordPress plugin customization",
+                                        "Payment Gateway integration: Braintree, Authorize.net"
+                                    ]
+                                },
+                            ].map((skill, i) => (
+                                <div className="col-md-4" key={i}>
+                                    <Card title={skill.title} description={
+                                        skill.description.map((line, idx) => <div key={idx}>{line}</div>)
+                                    } />
+                                </div>
+                            ))}
+                        </div>
+                    </Section>
+
+                    <Section id="experience" title="Work Experience">
+                        {[
+                            {
+                                title: "Full Stack Developer - Hostera (Apr 2025 - Present)",
+                                description: (
+                                    <>
+                                        <p>
+                                            Currently working as a Full Stack Developer at Hostera, where I design and build dynamic web applications using Laravel and React.
+                                            I prioritize optimizing application performance and delivering seamless user experiences. My responsibilities include developing custom WordPress plugins to enhance client websites and integrating real-time features such as live notifications and chat.
+                                        </p>
+                                        <p>
+                                            Additionally, I focus on optimizing database queries and refactoring backend code to improve scalability and maintainability. Collaborating closely with cross-functional teams, I ensure that both frontend and backend components work harmoniously.
+                                        </p>
+                                    </>
+                                ),
+                            },
+                            {
+                                title: "PHP Developer - Kreashion Software House (Apr 2024 - Mar 2025)",
+                                description: (
+                                    <>
+                                        <p>
+                                            At Kreashion Software House, I contributed to the development and maintenance of SaaS applications built on the Laravel framework.
+                                            I enhanced UI responsiveness and improved the overall user interface design, resulting in better customer satisfaction.
+                                        </p>
+                                        <p>
+                                            My role involved working closely with frontend developers and backend engineers to deliver end-to-end solutions that met client requirements, including implementing secure authentication and integrating third-party APIs.
+                                        </p>
+                                    </>
+                                ),
+                            },
+                            {
+                                title: "Intern - eSolutions Provider (Jun 2023 - Dec 2023)",
+                                description: (
+                                    <>
+                                        <p>
+                                            During my internship at eSolutions Provider, I assisted in developing admin dashboards using Laravel and Blade templating.
+                                            I implemented CRUD functionalities and built user authentication systems with role-based access control.
+                                        </p>
+                                        <p>
+                                            I also actively participated in debugging, fixing issues, and enhancing existing features, which improved system stability and usability.
+                                        </p>
+                                    </>
+                                ),
+                            },
+                        ].map((exp, index) => (
+                            <Card key={index} title={exp.title} description={exp.description} />
+                        ))}
+                    </Section>
+
+                    <Section id="projects" title="Projects">
+                        <div className="row">
+                            {[
+                                {
+                                    title: "BinSaleh - Business Accounting",
+                                    description: (
+                                        <>
+                                            <p>
+                                                Developed a comprehensive admin panel for real estate management using Laravel, Blade, jQuery, and MySQL. Designed intuitive UIs, implemented dynamic forms, and optimized system performance, enhancing user efficiency.
+                                            </p>
+                                            <a href="#" className="btn btn-primary" target="_blank" rel="noopener noreferrer">View Project</a>
+                                        </>
+                                    ),
+                                },
+                                {
+                                    title: "InsureKar - Insurance / Tracker Plans",
+                                    description: (
+                                        <>
+                                            <p>
+                                                Created frontend features for an insurance platform with Laravel, Blade, jQuery, and MySQL. Implemented modals, data entry forms, and integrated real-time tracking to boost user engagement.
+                                            </p>
+                                            <a href="#" className="btn btn-primary" target="_blank" rel="noopener noreferrer">View Project</a>
+                                        </>
+                                    ),
+                                },
+                                {
+                                    title: "Genius 11 - Auction Bidding App",
+                                    description: (
+                                        <>
+                                            <p>
+                                                Built secure, scalable CRUD APIs for bidding, authentication, and product listings using Laravel and MySQL. Delivered real-time auction data handling with robust backend architecture.
+                                            </p>
+                                            <a href="#" className="btn btn-primary" target="_blank" rel="noopener noreferrer">View Project</a>
+                                        </>
+                                    ),
+                                },
+                                {
+                                    title: "RapidHire - Hiring Solution",
+                                    description: (
+                                        <>
+                                            <p>
+                                                Developed frontend and admin panel with Laravel, Blade, and MySQL to streamline recruitment workflows. Implemented secure authentication and optimized database queries for efficiency.
+                                            </p>
+                                            <a href="#" className="btn btn-primary" target="_blank" rel="noopener noreferrer">View Project</a>
+                                        </>
+                                    ),
+                                },
+                                {
+                                    title: "QR Code Generator",
+                                    description: (
+                                        <>
+                                            <p>
+                                                Designed a user-friendly QR code generator using Laravel, Blade, and JavaScript. Created accessible UI with custom options and seamless code generation and sharing features.
+                                            </p>
+                                            <a href="#" className="btn btn-primary" target="_blank" rel="noopener noreferrer">View Project</a>
+                                        </>
+                                    ),
+                                },
+                                {
+                                    title: "Trust App New Version",
+                                    description: (
+                                        <>
+                                            <p>
+                                                Migrated a WordPress site to Laravel, rebuilt core features, and enhanced UI using Blade and MySQL. Improved backend scalability and performance while preserving existing functionality.
+                                            </p>
+                                            <a href="#" className="btn btn-primary" target="_blank" rel="noopener noreferrer">View Project</a>
+                                        </>
+                                    ),
+                                },
+                                {
+                                    title: "GOGOPAK",
+                                    description: (
+                                        <>
+                                            <p>
+                                                Developed investment tracking features with Laravel, Blade, JavaScript, and MySQL. Built responsive templates and automated profit calculations to ensure smooth real-time updates.
+                                            </p>
+                                            <a href="#" className="btn btn-primary" target="_blank" rel="noopener noreferrer">View Project</a>
+                                        </>
+                                    ),
+                                },
+                                {
+                                    title: "FileQ",
+                                    description: (
+                                        <>
+                                            <p>
+                                                Created a file upload and management system with Laravel backend and Blade frontend, later migrating to React. Used MySQL for data handling and added link generation for easy sharing.
+                                            </p>
+                                            <a href="#" className="btn btn-primary" target="_blank" rel="noopener noreferrer">View Project</a>
+                                        </>
+                                    ),
+                                },
+                            ].map((proj, i) => (
+                                <div className="col-md-6 mb-4" key={i}>
+                                    <Card title={proj.title} description={proj.description} />
+                                </div>
+                            ))}
+                        </div>
+                    </Section>
+
+                    <Section id="certificates" title="Certificates">
+                        <Card title="Programming with C++" description="Completed programming course at Aptech Computer Education (September 2018)." />
+                    </Section>
+
+                    <Section id="education" title="Education">
+                        <Card title="Bachelor of Science in Computer Science" description="The Islamia University of Bahawalpur (2018–2022)" />
+                        <Card title="FSc Pre-Engineering" description="Moon System of Education (2015–2017)" />
+                    </Section>
+
+                    <Section id="contact" title="Contact">
+                        <div className="row">
+                            <div className="col-md-6 col-lg-3 mb-3">
+                                <Card description={
+                                    <>
+                                        <strong>Email:</strong>
+                                        <p>
+                                            <a href="mailto:ma0305422@gmail.com" className="btn btn-primary btn-sm" role="button">
+                                                Send Email
+                                            </a>
+                                        </p>
+                                    </>
+                                } />
+                            </div>
+                            <div className="col-md-6 col-lg-3 mb-3">
+                                <Card description={
+                                    <>
+                                        <strong>GitHub:</strong>
+                                        <p>
+                                            <a href="https://github.com/ArslanAsh465" target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-sm" role="button">
+                                                View GitHub
+                                            </a>
+                                        </p>
+                                    </>
+                                } />
+                            </div>
+                            <div className="col-md-6 col-lg-3 mb-3">
+                                <Card description={
+                                    <>
+                                        <strong>LinkedIn:</strong>
+                                        <p>
+                                            <a href="https://www.linkedin.com/in/marslan465/" target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-sm" role="button">
+                                                View LinkedIn
+                                            </a>
+                                        </p>
+                                    </>
+                                } />
+                            </div>
+                            <div className="col-md-6 col-lg-3 mb-3">
+                                <Card description={
+                                    <>
+                                        <strong>Location:</strong>
+                                        <p>Bahawalpur, Pakistan</p>
+                                    </>
+                                } />
+                            </div>
+                        </div>
+                    </Section>
+
+                    <footer className="bg-dark text-white text-center py-3">
+                        &copy; {new Date().getFullYear()} Muhammad Arslan.
+                    </footer>
+                </>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
 </body>
+
 </html>
